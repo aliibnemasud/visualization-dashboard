@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
 import Charts from '../Chart/Charts';
 
 
-const Dashboard = () => {
-    
+const Dashboard = () => {    
 
     return (
         <div className="drawer drawer-mobile">

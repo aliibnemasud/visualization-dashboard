@@ -22,7 +22,7 @@ const SingleChart = (props) => {
                 labels: ["Intencity", "Revelance", "Likelihood"],
                 datasets: [
                     {
-                        label: "Topics: Growth",
+                        label: `${props?.data?.topic}`,
                         data: data,
                         borderColor: 'rgb(255, 99, 132)',
                         backgroundColor: ['red', "green", "yellow", "blue"],
