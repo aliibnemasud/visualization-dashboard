@@ -10,7 +10,7 @@ const SingleChart = (props) => {
     }    
   
     return (
-        <div className='shadow-2xl shadow-lg p-5 border rounded-2xl'>
+        <div className='shadow-2xl p-5 border rounded-2xl'>
             <div className='flex justify-between my-4'>
                 <div>
                     <h1 title='Country' className="text-2xl">{props?.data?.country}</h1>

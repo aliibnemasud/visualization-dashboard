@@ -6,10 +6,9 @@ const useData = () => {
     const [businessData, setbusinessData] = useState([]);
 
     useEffect(() => {
-        axios.get('jsondata.json')
+        axios.get('https://rocky-falls-43835.herokuapp.com/businessdata')
             .then(res => setbusinessData(res.data));
     }, [])
-
 
     return [businessData]
 }
