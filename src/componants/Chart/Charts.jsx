@@ -1,41 +1,43 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useData from '../Hook/useData';
-import BarChart from './BarChart';
-import LineChart from './LineChart';
 import SingleChart from './SingleChart';
 
-import { UserData } from './UserData';
-
-
 const Charts = () => {
-
-
     const [businessData] = useData();
 
-    /* const [chartDtada, setbusinessData] = useState({
-        labels: ["Intencity", "Revelance", "Like Hood", "Start - 2022"],
-        datasets: [
-            {
-                label: "Bangladesh",
-                data: [4, 6, 14],
-                borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: ['red', "green", "yellow", "blue"],
-            }
-        ]
-    }); */
+    
+    // Filtering by End year
+    const [endYear, setEndyear] = useState();
+
+    const endYearFilter = businessData.filter(data => data.end_year === parseInt(endYear))
+    const years = businessData.filter(data => data.end_year);
+    const yearArray = years.map(data => data.end_year);    
+    // const uniqueYear = [[...new Set(yearArray)]]; // working but not working for the select
+    const uniqueYear = (Array.from(new Set(yearArray))).sort();
+
+    // all
+    let loadBusinessdata;
+
+
 
     return (
-        <div className=' grid grid-cols-3 gap-3 p-4'>
+        <div>
+            <div className='my-5 bg-slate-200 py-3 px-3 rounded-xl'>
+                <input className="input select-bordered" placeholder='Search...' onBlur={(e)=> setEndyear(e.target.value)}/>
 
-
-            {
-                businessData && businessData.map((data, index) => <SingleChart key={index} data={data} />).slice(0, 50)
-            }
-            
-            
-            <SingleChart/>
-            
+                <select className='select' onChange={(e)=> setEndyear(e.target.value)}>
+                    {
+                        uniqueYear.map(data => <option value={data}>{data}</option>)
+                    }
+                    
+                </select>
+                
+            </div>
+            <div className=' grid grid-cols-3 gap-5 p-4'>
+                {
+                    endYearFilter && endYearFilter.map((data, index) => <SingleChart key={index} data={data} />).slice(0, 51)
+                }
+            </div>
         </div>
     );
 };
