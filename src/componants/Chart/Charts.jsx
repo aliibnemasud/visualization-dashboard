@@ -1,9 +1,19 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import useData from '../Hook/useData';
 import SingleChart from './SingleChart';
 
 const Charts = () => {
-    const [businessData] = useData();
+
+    //const [businessData, loading] = useData();
+    const [businessData, setBusinessData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(()=> {
+        axios.get("assignmentData.json")
+        .then(res => setBusinessData(res.data))
+        setLoading(false)
+    },[])
 
     // Filtering by End year
     const [endYear, setEndyear] = useState([]);
@@ -46,6 +56,10 @@ const Charts = () => {
         const searchResult = businessData.filter((product) => product.country.toLowerCase().includes(searchText.toLowerCase()));
         setSearch(searchResult);
     }
+
+    if(loading) {
+        return <h1>Loading....</h1>
+    } 
 
     // Services All
     let loadBusinessData;
