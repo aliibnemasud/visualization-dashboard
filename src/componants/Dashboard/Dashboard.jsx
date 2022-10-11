@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import Charts from '../Chart/Charts';
 
 const Dashboard = () => {
 
@@ -21,16 +20,14 @@ const Dashboard = () => {
 
     const time = timeAMPM(today);
 
-
-
     return (
         <div className="drawer drawer-mobile">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content m-12">
                 {/* <!-- Page content here --> */}
-                <div className='flex justify-between mx-10'>
+                <div className='flex justify-between pr-5'>
                     <h1 className="text-2xl">Dashboard</h1>
-                    <h2>{date} | {time}</h2>
+                    <h2 className='shadow-lg py-2 px-3 border-2 border-blue-400 rounded-lg'>{date} | {time}</h2>
                 </div>
                 <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
                 <Outlet />
